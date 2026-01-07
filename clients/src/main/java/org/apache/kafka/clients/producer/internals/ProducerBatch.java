@@ -81,6 +81,7 @@ public final class ProducerBatch {
     private long drainedMs;
     private boolean retry;
     private boolean reopened;
+    private boolean sent;
 
     // Tracks the current-leader's epoch to which this batch would be sent, in the current to produce the batch.
     private OptionalInt currentLeaderEpoch;
@@ -598,5 +599,13 @@ public final class ProducerBatch {
     // VisibleForTesting
     int attemptsWhenLeaderLastChanged() {
         return attemptsWhenLeaderLastChanged;
+    }
+
+    public void setSent() {
+        this.sent = true;
+    }
+
+    public boolean isSent() {
+        return this.sent;
     }
 }

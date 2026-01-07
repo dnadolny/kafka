@@ -1152,6 +1152,9 @@ public class RecordAccumulator {
                 dq.remove(batch);
             }
             batch.abort(reason);
+            if (batch.isSent()) {
+                throw new RuntimeException("deallocating sent batch! bad!");
+            }
             completeBatchAndDeallocate(batch);
         }
     }

@@ -897,6 +897,7 @@ public class Sender implements Runnable {
 
         ProduceRequestData.TopicProduceDataCollection tpd = new ProduceRequestData.TopicProduceDataCollection();
         for (ProducerBatch batch : batches) {
+            batch.setSent();
             TopicPartition tp = batch.topicPartition;
             MemoryRecords records = batch.records();
             Uuid topicId = topicIds.get(tp.topic());
