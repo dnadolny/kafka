@@ -1152,7 +1152,10 @@ public class RecordAccumulator {
                 dq.remove(batch);
             }
             batch.abort(reason);
-            completeAndDeallocateBatch(batch);
+            if (batch.isSent())
+                completeAndDeallocateBatch(batch);
+            else
+                completeBatch(batch);
         }
     }
 
